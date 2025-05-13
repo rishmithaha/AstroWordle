@@ -11,7 +11,7 @@ if "secret_word" not in st.session_state:
     st.session_state.game_over = False
     st.session_state.score_astro = 800
 
-st.title("AstroWordle")
+st.title("AstroWordle 🪐")
 st.write(f"### Attempt {st.session_state.attempts} / {st.session_state.max_attempts}")
 
 if not st.session_state.game_over:
