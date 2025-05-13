@@ -11,6 +11,12 @@ if "secret_word" not in st.session_state:
     st.session_state.game_over = False
     st.session_state.score_astro = 800
 
+st.set_page_config(
+    page_title="AstroWordle 🪐", 
+    page_icon="🪐",             
+    layout="centered"
+)
+
 st.title("AstroWordle 🪐")
 st.write(f"### Attempt {st.session_state.attempts} / {st.session_state.max_attempts}")
 
