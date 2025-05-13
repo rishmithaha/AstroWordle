@@ -12,7 +12,7 @@ if "secret_word" not in st.session_state:
     st.session_state.score_astro = 800
 
 st.set_page_config(
-    page_title="AstroWordle 🪐", 
+    page_title="AstroWordle", 
     page_icon="🪐",             
     layout="centered"
 )
