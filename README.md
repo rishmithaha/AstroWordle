@@ -20,7 +20,7 @@
   
 ## 📁 File Structure
 
-wordle-streamlit/
+astrowordle/
 - wordle.py # Main Streamlit app file
 - wordlist.txt # List of valid 5-letter words (one per line)
 
