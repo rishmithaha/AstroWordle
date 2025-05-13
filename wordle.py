@@ -16,7 +16,7 @@ st.write(f"### Attempt {st.session_state.attempts} / {st.session_state.max_attem
 
 if not st.session_state.game_over:
     guess = st.text_input("Enter a 5-letter word", max_chars=5).lower()
-    if st.button("Submit Guess"):
+    if st.button("Submit Guess",key="submit_guess_button"):
         if len(guess)!=5:
             st.warning("Please enter a 5-letter word!")
         else:
@@ -48,7 +48,7 @@ for row in st.session_state.feedback:
     st.write(" ".join([f"{color}{char}" for color, char in row]))
 
 if st.session_state.game_over:
-    if st.button("Play Again"):
+    if st.button("Play Again", key="play_again_button"):
         st.session_state.clear()
         st.experimental_rerun()
 
