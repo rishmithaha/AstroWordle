@@ -1,5 +1,7 @@
 import streamlit as st
 import random
+import base64
+from pathlib import Path
 
 # Load secret word only once
 if "secret_word" not in st.session_state:
@@ -19,9 +21,6 @@ st.set_page_config(
     layout="centered",
 )
 
-import base64
-from pathlib import Path
-
 # Encode the local image file to base64
 def get_base64_bg(image_path):
     with open(image_path, "rb") as img_file:
@@ -37,9 +36,11 @@ st.markdown(f"""
         html, body {{
             height: 100%;
             margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            background: transparent;
         }}
 
-        /* Background Image */
         body::before {{
             content: "";
             position: fixed;
@@ -51,10 +52,9 @@ st.markdown(f"""
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            z-index: -3;
+            z-index: -2;
         }}
 
-        /* Dark Overlay */
         body::after {{
             content: "";
             position: fixed;
@@ -63,81 +63,58 @@ st.markdown(f"""
             height: 100%;
             width: 100%;
             background: rgba(0, 0, 0, 0.6);
-            z-index: -2;
-        }}
-
-        /* Stars animation */
-        body::before {{
-            animation: stars 60s linear infinite;
-        }}
-
-        @keyframes stars {{
-            0% {{ background-position: 0 0; }}
-            100% {{ background-position: 10000px 0; }}
-        }}
-
-        /* Typography and layout */
-        html, body, [class*="css"] {{
-            font-family: 'Orbitron', sans-serif;
-            color: white;
+            z-index: -1;
         }}
 
         h1 {{
-            font-size: 64px;
-            text-shadow: 2px 2px 8px #00ffff;
-            letter-spacing: 2px;
-            animation: fadeIn 1.5s ease-out;
-        }}
-
-        .stTextInput>div>div>input {{
-            background-color: #1e1e2f;
+            font-family: 'Orbitron', sans-serif;
             color: white;
-            font-size: 18px;
-            border: 2px solid #4b0082;
-            border-radius: 10px;
-            box-shadow: 0 0 8px #00ffff;
+            text-align: center;
+            font-size: 64px;
+            margin-top: 20px;
+            text-shadow: 2px 2px 8px #00ffff;
         }}
 
         .stButton>button {{
             background-color: #1f1f2e;
             color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 10px 20px;
             font-weight: bold;
             transition: 0.3s;
-            border: 2px solid #ffffff;
-            box-shadow: 0 0 8px #00ffff;
+            border: 2px solid white;
         }}
 
         .stButton>button:hover {{
             background-color: #4b0082;
             border-color: cyan;
             color: cyan;
-            box-shadow: 0 0 16px cyan;
+        }}
+
+        .stTextInput>div>div>input {{
+            background-color: #1e1e2f;
+            color: white;
+            font-size: 18px;
         }}
 
         .feedback-box {{
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 8px;
-            text-shadow: 0 0 6px #ff00ff;
         }}
 
         .score {{
             font-size: 20px;
             font-weight: bold;
             color: #FFD700;
-            text-shadow: 0 0 6px #FFD700;
-        }}
-
-        @keyframes fadeIn {{
-            from {{ opacity: 0; transform: translateY(-10px); }}
-            to {{ opacity: 1; transform: translateY(0); }}
         }}
     </style>
 """, unsafe_allow_html=True)
 
 # ---- Main UI ----
 st.title("AstroWordle 🪐")
+st.markdown("""
+    <h1>AstroWordle 🪐</h1>
+""", unsafe_allow_html=True)
 st.markdown(f"### Attempt {st.session_state.attempts} / {st.session_state.max_attempts}")
 
 if not st.session_state.game_over:
