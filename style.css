@@ -82,3 +82,11 @@ h1 {
     gap: 8px;
     margin-top: 16px;
 }
+
+.astro-title {
+    font-family: 'Audiowide', cursive;
+    font-size: 48px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 10px;
+}
