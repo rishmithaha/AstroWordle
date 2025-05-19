@@ -86,16 +86,19 @@ if not st.session_state.game_over:
                 st.error(f"💥 GAME OVER! The word was '{st.session_state.secret_word.upper()}'")
                 st.session_state.game_over = True
 
+color_map = {
+    "green": "#4CAF50",   # Correct letter & position
+    "yellow": "#FFD700",  # Correct letter, wrong position
+    "white": "#888888"    # Incorrect letter
+}
+
 for row in st.session_state.feedback:
-    st.markdown(
-        "<div class='feedback-box'>" +
-        "".join([
-            f"<span style='background-color:{color}; color:white; font-weight:bold; padding:8px 12px; border-radius:6px; font-size:24px;'>{char}</span>"
-            for color, char in row
-        ]) +
-        "</div>",
-        unsafe_allow_html=True
-    )
+    rendered_row = "".join([
+        f"<span style='background-color:{color_map[color]}; color:white; padding:10px 14px; margin:3px; border-radius:5px; font-size:24px; display:inline-block;'>{char}</span>"
+        for color, char in row
+    ])
+    st.markdown(f"<div style='text-align:center;'>{rendered_row}</div>", unsafe_
+
 
 if st.session_state.game_over:
     if st.button("Play Again", key="play_again_button"):
