@@ -1,8 +1,16 @@
-@font-face {
-    font-family: 'Dreamscape';
-    src: url('fonts/dreamscape.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Audiowide', cursive !important;
+}
+
+.astro-title {
+    font-family: 'Audiowide', cursive !important;
+    font-size: 60px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+    margin-bottom: 20px;
 }
 
 html, body, * {
