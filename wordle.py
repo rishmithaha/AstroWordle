@@ -3,7 +3,36 @@ import random
 import base64
 from pathlib import Path
 
-# Load secret word only once
+# ------------------ Set Background ------------------
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+def set_png_as_page_bg(png_file):
+    bin_str = get_base64_of_bin_file(png_file)
+    page_bg_img = '''
+    <style>
+    .stApp {
+        background-image: url("data:image/png;base64,%s");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    ''' % bin_str
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+
+set_png_as_page_bg('background.png')
+
+# ------------------ App Configuration ------------------
+st.set_page_config(
+    page_title="AstroWordle",
+    page_icon="🪐",
+    layout="centered",
+)
+
+# ------------------ Game Setup ------------------
 if "secret_word" not in st.session_state:
     with open("wordlist.txt", "r") as f:
         st.session_state.word_list = [word.strip() for word in f if len(word.strip()) == 5]
@@ -14,24 +43,7 @@ if "secret_word" not in st.session_state:
     st.session_state.game_over = False
     st.session_state.score_astro = 800
 
-# Page setup
-st.set_page_config(
-    page_title="AstroWordle",
-    page_icon="🪐",
-    layout="centered",
-)
-
-# Encode the local image file to base64
-def get_base64_bg(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode()
-
-bg_base64 = get_base64_bg("bg.png")
-
-with open("style.css") as css:
-    st.markdown(f"<style>{css.read()}</style>", unsafe_allow_html=True)
-
-# ---- Main UI ----
+# ------------------ Game UI ------------------
 st.title("AstroWordle 🪐")
 st.markdown(f"### Attempt {st.session_state.attempts} / {st.session_state.max_attempts}")
 
@@ -65,16 +77,16 @@ if not st.session_state.game_over:
                 st.error(f"💥 GAME OVER! The word was '{st.session_state.secret_word.upper()}'")
                 st.session_state.game_over = True
 
-# Feedback Display
+# ------------------ Feedback Display ------------------
 for row in st.session_state.feedback:
     st.markdown(f"<div class='feedback-box'>{' '.join([f'{color}{char}' for color, char in row])}</div>", unsafe_allow_html=True)
 
-# Play Again Option
+# ------------------ Play Again Option ------------------
 if st.session_state.game_over:
     if st.button("Play Again", key="play_again_button"):
         st.session_state.clear()
         st.experimental_rerun()
 
-# Score Display
-st.markdown(f"<div class='score'>🌌 Current Score: {st.session_state.score_astro}</div>", unsafe_allow_html=True)
+# ------------------ Score Display ------------------
+st.markdown(f"<div class='score'>Current Score: {st.session_state.score_astro}</div>", unsafe_allow_html=True)
 
