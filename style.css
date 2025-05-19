@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+/* Apply Orbitron font to everything with !important */
+html, body, * {
+    font-family: 'Orbitron', sans-serif !important;
+    color: white !important;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Background image setup */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url("data:image/png;base64,REPLACE_THIS_WITH_YOUR_BASE64");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -2;
+}
+
+/* Dark overlay */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+/* Title styling */
+h1 {
+    font-size: 64px !important;
+    text-align: center;
+    text-shadow: 2px 2px 8px #00ffff;
+    color: white !important;
+    margin-bottom: 0.5em;
+}
+
+/* Submit button styling */
+.stButton > button {
+    background-color: #1f1f2e !important;
+    color: white !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: bold !important;
+    border: 2px solid white !important;
+    transition: 0.3s !important;
+}
+
+.stButton > button:hover {
+    background-color: #4b0082 !important;
+    border-color: cyan !important;
+    color: cyan !important;
+}
+
+/* Input text box styling */
+.stTextInput input {
+    background-color: #1e1e2f !important;
+    color: white !important;
+    font-size: 18px !important;
+}
+
+/* Feedback row styling */
+.feedback-box {
+    font-size: 24px !important;
+    margin-bottom: 8px !important;
+}
+
+/* Score display */
+.score {
+    font-size: 20px !important;
+    font-weight: bold !important;
+    color: #FFD700 !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}

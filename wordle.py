@@ -28,87 +28,8 @@ def get_base64_bg(image_path):
 
 bg_base64 = get_base64_bg("bg.png")
 
-# ---- Custom Styling ----
-st.markdown(f"""
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-
-        html, body {{
-            height: 100%;
-            margin: 0;
-            font-family: 'Orbitron', sans-serif;
-            color: white;
-            background: transparent;
-        }}
-
-        body::before {{
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background-image: url("data:image/png;base64,{bg_base64}");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            z-index: -2;
-        }}
-
-        body::after {{
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: -1;
-        }}
-
-        h1 {{
-            font-family: 'Orbitron', sans-serif;
-            color: white;
-            text-align: center;
-            font-size: 64px;
-            margin-top: 20px;
-            text-shadow: 2px 2px 8px #00ffff;
-        }}
-
-        .stButton>button {{
-            background-color: #1f1f2e;
-            color: white;
-            border-radius: 8px;
-            padding: 10px 20px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: 2px solid white;
-        }}
-
-        .stButton>button:hover {{
-            background-color: #4b0082;
-            border-color: cyan;
-            color: cyan;
-        }}
-
-        .stTextInput>div>div>input {{
-            background-color: #1e1e2f;
-            color: white;
-            font-size: 18px;
-        }}
-
-        .feedback-box {{
-            font-size: 24px;
-            margin-bottom: 8px;
-        }}
-
-        .score {{
-            font-size: 20px;
-            font-weight: bold;
-            color: #FFD700;
-        }}
-    </style>
-""", unsafe_allow_html=True)
+with open("style.css") as css:
+    st.markdown(f"<style>{css.read()}</style>", unsafe_allow_html=True)
 
 # ---- Main UI ----
 st.title("AstroWordle 🪐")
