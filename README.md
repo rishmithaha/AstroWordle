@@ -2,7 +2,7 @@
 *A Space-Themed Wordle Game built with Streamlit*
 
 ## 🌟 About AstroWordle
-**AstroWordle** is a visually enhanced, interactive word-guessing game built using [Streamlit](https://streamlit.io/). Inspired by the original **Wordle**, this galactic twist features a score system, stylish color-coded feedback, and a custom background that immerses you in a cosmic experience!
+**AstroWordle** is an interactive word-guessing game built using [Streamlit](https://streamlit.io/). Inspired by the original **Wordle**.
 
 ## 🌐 Try it here: [https://wordle-aztura.streamlit.app/](https://wordle-aztura.streamlit.app/)
 
@@ -26,12 +26,13 @@
 - Colored letter feedback using HTML/CSS instead of emojis
 
 ## 📁 File Structure
-astrowordle/
-├── wordle.py # Main Streamlit app file
-├── wordlist.txt # List of valid 5-letter words (one per line)
-├── background.png # Background image used in the app
-└── fonts/
-└── dreamscape.ttf # Custom font used for UI
+
+- **astrowordle/**
+  - **wordle.py** — Main Streamlit app file  
+  - **wordlist.txt** — List of valid 5-letter words (one per line)  
+  - **background.png** — Background image used in the app  
+  - **fonts/**
+    - **dreamscape.ttf** — Custom font used for UI
 
 ## 📜 Requirements
 
