@@ -80,7 +80,9 @@ if not st.session_state.game_over:
 # ------------------ Feedback Display ------------------
 for row in st.session_state.feedback:
     st.markdown(
-        f"<div class='feedback-box'>{''.join([f'<span style=\"color:{color}; font-weight:bold;\">{char}</span>' for color, char in row])}</div>",
+        f"<div class='feedback-box' style='font-size: 36px; letter-spacing: 16px;'>"
+        f"{''.join([f'<span style=\"color:{color}; font-weight:bold;\">{char}</span>' for color, char in row])}"
+        f"</div>",
         unsafe_allow_html=True
     )
     
