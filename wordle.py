@@ -97,8 +97,7 @@ for row in st.session_state.feedback:
         f"<span style='background-color:{color_map[color]}; color:white; padding:10px 14px; margin:3px; border-radius:5px; font-size:24px; display:inline-block;'>{char}</span>"
         for color, char in row
     ])
-    st.markdown(f"<div style='text-align:center;'>{rendered_row}</div>", unsafe_
-
+    st.markdown(f"<div style='text-align:center;'>{rendered_row}</div>", unsafe_allow_html=True)
 
 if st.session_state.game_over:
     if st.button("Play Again", key="play_again_button"):
