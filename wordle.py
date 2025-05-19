@@ -112,9 +112,6 @@ st.markdown(f"""
 
 # ---- Main UI ----
 st.title("AstroWordle 🪐")
-st.markdown("""
-    <h1>AstroWordle 🪐</h1>
-""", unsafe_allow_html=True)
 st.markdown(f"### Attempt {st.session_state.attempts} / {st.session_state.max_attempts}")
 
 if not st.session_state.game_over:
