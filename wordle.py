@@ -57,7 +57,7 @@ if "secret_word" not in st.session_state:
     st.session_state.game_over = False
     st.session_state.score_astro = 800
 
-st.markdown('<h1 class="astro-title">AstroWordle 🪐</h1>', unsafe_allow_html=True)
+st.markdown('<div class="astro-title">AstroWordle 🪐</div>', unsafe_allow_html=True)
 st.markdown(f"### Attempt {st.session_state.attempts} / {st.session_state.max_attempts}")
 
 if not st.session_state.game_over:
