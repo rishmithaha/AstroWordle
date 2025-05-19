@@ -51,13 +51,11 @@ h1 {
     font-size: 64px !important;
     text-align: center;
     text-shadow: 2px 2px 8px #00ffff;
-    color: white !important;
     margin-bottom: 0.5em;
 }
 
 .stButton > button {
     background-color: #1f1f2e !important;
-    color: white !important;
     border-radius: 8px !important;
     padding: 10px 20px !important;
     font-weight: bold !important;
@@ -73,7 +71,6 @@ h1 {
 
 .stTextInput input {
     background-color: #1e1e2f !important;
-    color: white !important;
     font-size: 18px !important;
 }
 
