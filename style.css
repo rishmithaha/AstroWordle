@@ -1,6 +1,7 @@
-@font-face {
-    font-family: 'Dreamscape';
-    src: url(data:font/truetype;charset=utf-8;base64,...);
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Audiowide', cursive;
 }
 
 html, body, * {
