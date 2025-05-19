@@ -55,25 +55,14 @@ if not st.session_state.game_over:
             st.session_state.score_astro -= 100
 
             def get_feedback(guess, secret):
-                feedback = [("", "")] * 5
-                secret_chars = list(secret)
-                used = [False] * 5
-
+                feedback = []
                 for i in range(5):
                     if guess[i] == secret[i]:
-                        feedback[i] = ("green", guess[i].upper())
-                        used[i] = True
-
-                for i in range(5):
-                    if feedback[i][0] == "":
-                        if guess[i] in secret_chars:
-                            for j in range(5):
-                                if secret[j] == guess[i] and not used[j]:
-                                    feedback[i] = ("yellow", guess[i].upper())
-                                    used[j] = True
-                                    break
-                        if feedback[i][0] == "":
-                            feedback[i] = ("red", guess[i].upper())
+                        feedback.append(("green", guess[i].upper()))
+                    elif guess[i] in secret:
+                        feedback.append(("yellow", guess[i].upper()))
+                    else:
+                        feedback.append(("white", guess[i].upper()))
                 return feedback
 
             feedback = get_feedback(guess, st.session_state.secret_word)
@@ -87,14 +76,14 @@ if not st.session_state.game_over:
                 st.session_state.game_over = True
 
 color_map = {
-    "green": "#4CAF50",   # Correct letter & position
-    "yellow": "#FFD700",  # Correct letter, wrong position
-    "white": "#888888"    # Incorrect letter
+    "green": "#4CAF50",
+    "yellow": "#FFD700",
+    "white": "#888888"
 }
 
 for row in st.session_state.feedback:
     rendered_row = "".join([
-        f"<span style='background-color:{color_map[color]}; color:white; padding:10px 14px; margin:3px; border-radius:5px; font-size:24px; display:inline-block;'>{char}</span>"
+        f"<span style='background-color:{color_map.get(color, '#000')}; color:white; padding:10px 14px; margin:3px; border-radius:5px; font-size:24px; display:inline-block;'>{char}</span>"
         for color, char in row
     ])
     st.markdown(f"<div style='text-align:center;'>{rendered_row}</div>", unsafe_allow_html=True)
