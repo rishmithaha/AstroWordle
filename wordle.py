@@ -61,7 +61,9 @@ st.markdown('<div class="astro-title">AstroWordle 🪐</div>', unsafe_allow_html
 st.markdown(f"### Attempt {st.session_state.attempts} / {st.session_state.max_attempts}")
 
 if not st.session_state.game_over:
-    guess = st.text_input("Enter a 5-letter word", max_chars=5).lower()
+    guess = st.text_input("Enter a 5-letter word", max_chars=5)
+    if guess:
+        guess = guess.lower()
     if st.button("Submit Guess", key="submit_guess_button"):
         if len(guess) != 5:
             st.warning("Please enter a 5-letter word!")
