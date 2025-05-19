@@ -23,7 +23,6 @@
 
 - Custom Dreamscape font
 - Space-themed background image (set via base64)
-- 60% translucent black overlay for improved contrast
 - Colored letter feedback using HTML/CSS instead of emojis
 
 ## 📁 File Structure
