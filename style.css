@@ -14,7 +14,7 @@ html, body, [class*="css"] {
 }
 
 html, body, * {
-    font-family: 'Dreamscape', sans-serif !important;
+    font-family: 'serif', sans-serif !important;
     color:white !important;
     box-sizing: border-box;
     margin: 0;
