@@ -3,6 +3,13 @@ import random
 import base64
 from pathlib import Path
 
+# ------------------ App Configuration ------------------
+st.set_page_config(
+    page_title="AstroWordle",
+    page_icon="🪐",
+    layout="centered",
+)
+
 # ------------------ Set Background ------------------
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
@@ -24,13 +31,6 @@ def set_png_as_page_bg(png_file):
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
 set_png_as_page_bg('background.png')
-
-# ------------------ App Configuration ------------------
-st.set_page_config(
-    page_title="AstroWordle",
-    page_icon="🪐",
-    layout="centered",
-)
 
 # ------------------ Game Setup ------------------
 if "secret_word" not in st.session_state:
