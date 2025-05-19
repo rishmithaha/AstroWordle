@@ -9,8 +9,9 @@ st.set_page_config(
     layout="centered",
 )
 
-def get_base64_of_img_file(img_file):
-    with open(img_file, 'rb') as f:
+# ------------------ Set Background ------------------
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
@@ -30,27 +31,7 @@ def set_png_as_page_bg(png_file):
 
 set_png_as_page_bg('background.png')
 
-def get_base64_of_font_file():
-    with open("dreamscape.ttf", "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-def set_custom_font(ttf_file):
-    font_base64 = get_base64_of_font_file(ttf_file)
-    font_css = f"""
-    <style>
-    @font-face {{
-        font-family: 'Dreamscape';
-        src: url(data:font/ttf;base64,{font_base64}) format('truetype');
-    }}
-    html, body, [class*="css"] {{
-        font-family: 'Dreamscape', sans-serif;
-    }}
-    </style>
-    """
-    st.markdown(font_css, unsafe_allow_html=True)
-
-set_custom_font("dreamscape.ttf")
-
+# ------------------ Game Setup ------------------
 if "secret_word" not in st.session_state:
     with open("wordlist.txt", "r") as f:
         st.session_state.word_list = [word.strip() for word in f if len(word.strip()) == 5]
@@ -102,9 +83,11 @@ for row in st.session_state.feedback:
         unsafe_allow_html=True
     )
     
+# ------------------ Play Again Option ------------------
 if st.session_state.game_over:
     if st.button("Play Again", key="play_again_button"):
         st.session_state.clear()
         st.experimental_rerun()
 
 st.markdown(f"<div class='score'>Current Score: {st.session_state.score_astro}</div>", unsafe_allow_html=True)
+
