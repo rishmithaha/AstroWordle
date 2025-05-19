@@ -91,6 +91,6 @@ for row in st.session_state.feedback:
 if st.session_state.game_over:
     if st.button("Play Again", key="play_again_button"):
         st.session_state.clear()
-        st.experimental_rerun()
+        st.rerun()
 
 st.markdown(f"<div class='score'>Current Score: {st.session_state.score_astro}</div>", unsafe_allow_html=True)
