@@ -16,10 +16,6 @@
 - 🔢 **Scoring system**:
   - Starts at 800  
   - Deducts 100 points per incorrect guess  
-- 💻 **Streamlit UI enhancements**:
-  - Custom background with a translucent overlay for readability  
-  - Styled text input and buttons  
-  - Enlarged, spaced-out feedback letters for better clarity  
 - 🔁 **Play Again** option for quick resets  
 - 💾 Uses `st.session_state` to manage game state
 
