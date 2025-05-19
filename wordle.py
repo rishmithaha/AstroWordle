@@ -3,21 +3,19 @@ import random
 import base64
 from pathlib import Path
 
-# ------------------ App Configuration ------------------
 st.set_page_config(
     page_title="AstroWordle",
     page_icon="🪐",
     layout="centered",
 )
 
-# ------------------ Set Background ------------------
-def get_base64_of_bin_file(bin_file):
-    with open(bin_file, 'rb') as f:
+def get_base64_of_img_file(img_file):
+    with open(img_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
 def set_png_as_page_bg(png_file):
-    bin_str = get_base64_of_bin_file(png_file)
+    bin_str = get_base64_of_img_file(png_file)
     page_bg_img = '''
     <style>
     .stApp {
@@ -32,7 +30,29 @@ def set_png_as_page_bg(png_file):
 
 set_png_as_page_bg('background.png')
 
-# ------------------ Game Setup ------------------
+def get_base64_of_font_file(image_file):
+    with open("dreamscape.ttf", "rb") as f:
+        return base64.b64encode(f.read()).decode()
+    
+st.markdown(font_css, unsafe_allow_html=True)
+
+def set_custom_font(ttf_file):
+    font_base64 = get_base64_of_font_file(ttf_file)
+    font_css = f"""
+    <style>
+    @font-face {{
+        font-family: 'Dreamscape';
+        src: url(data:font/ttf;base64,{font_base64}) format('truetype');
+    }}
+    html, body, [class*="css"] {{
+        font-family: 'Dreamscape', sans-serif;
+    }}
+    </style>
+    """
+    st.markdown(font_css, unsafe_allow_html=True)
+
+set_custom_font("dreamscape.ttf")
+
 if "secret_word" not in st.session_state:
     with open("wordlist.txt", "r") as f:
         st.session_state.word_list = [word.strip() for word in f if len(word.strip()) == 5]
@@ -43,7 +63,6 @@ if "secret_word" not in st.session_state:
     st.session_state.game_over = False
     st.session_state.score_astro = 800
 
-# ------------------ Game UI ------------------
 st.title("AstroWordle 🪐")
 st.markdown(f"### Attempt {st.session_state.attempts} / {st.session_state.max_attempts}")
 
@@ -77,7 +96,6 @@ if not st.session_state.game_over:
                 st.error(f"💥 GAME OVER! The word was '{st.session_state.secret_word.upper()}'")
                 st.session_state.game_over = True
 
-# ------------------ Feedback Display ------------------
 for row in st.session_state.feedback:
     st.markdown(
         f"<div class='feedback-box' style='font-size: 36px; letter-spacing: 16px;'>"
@@ -86,12 +104,9 @@ for row in st.session_state.feedback:
         unsafe_allow_html=True
     )
     
-# ------------------ Play Again Option ------------------
 if st.session_state.game_over:
     if st.button("Play Again", key="play_again_button"):
         st.session_state.clear()
         st.experimental_rerun()
 
-# ------------------ Score Display ------------------
 st.markdown(f"<div class='score'>Current Score: {st.session_state.score_astro}</div>", unsafe_allow_html=True)
-
