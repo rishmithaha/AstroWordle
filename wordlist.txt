@@ -19,10 +19,8 @@ world
 pluto
 lunar
 rover
-radar
 field
 radio
 shine
 night
-orion
 astro
