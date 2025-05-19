@@ -60,11 +60,11 @@ if not st.session_state.game_over:
                 feedback = []
                 for i in range(5):
                     if guess[i] == secret[i]:
-                        feedback.append(("🟩", guess[i].upper()))
+                        feedback.append(("green", guess[i].upper()))
                     elif guess[i] in secret:
-                        feedback.append(("🟨", guess[i].upper()))
+                        feedback.append(("yellow", guess[i].upper()))
                     else:
-                        feedback.append(("⬜", guess[i].upper()))
+                        feedback.append(("white", guess[i].upper()))
                 return feedback
 
             feedback = get_feedback(guess, st.session_state.secret_word)
@@ -79,8 +79,11 @@ if not st.session_state.game_over:
 
 # ------------------ Feedback Display ------------------
 for row in st.session_state.feedback:
-    st.markdown(f"<div class='feedback-box'>{' '.join([f'{color}{char}' for color, char in row])}</div>", unsafe_allow_html=True)
-
+    st.markdown(
+        f"<div class='feedback-box'>{''.join([f'<span style=\"color:{color}; font-weight:bold;\">{char}</span>' for color, char in row])}</div>",
+        unsafe_allow_html=True
+    )
+    
 # ------------------ Play Again Option ------------------
 if st.session_state.game_over:
     if st.button("Play Again", key="play_again_button"):
