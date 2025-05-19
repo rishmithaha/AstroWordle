@@ -39,6 +39,7 @@ st.markdown(f"""
             margin: 0;
         }}
 
+        /* Background Image */
         body::before {{
             content: "";
             position: fixed;
@@ -50,9 +51,10 @@ st.markdown(f"""
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            z-index: -2;
+            z-index: -3;
         }}
 
+        /* Dark Overlay */
         body::after {{
             content: "";
             position: fixed;
@@ -60,46 +62,76 @@ st.markdown(f"""
             left: 0;
             height: 100%;
             width: 100%;
-            background: rgba(0, 0, 0, 0.6);  /* <-- dark overlay */
-            z-index: -1;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -2;
         }}
 
+        /* Stars animation */
+        body::before {{
+            animation: stars 60s linear infinite;
+        }}
+
+        @keyframes stars {{
+            0% {{ background-position: 0 0; }}
+            100% {{ background-position: 10000px 0; }}
+        }}
+
+        /* Typography and layout */
         html, body, [class*="css"] {{
             font-family: 'Orbitron', sans-serif;
             color: white;
         }}
 
-        .stButton>button {{
-            background-color: #1f1f2e;
-            color: white;
-            border-radius: 8px;
-            padding: 10px 20px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: 2px solid white;
-        }}
-
-        .stButton>button:hover {{
-            background-color: #4b0082;
-            border-color: cyan;
-            color: cyan;
+        h1 {{
+            font-size: 64px;
+            text-shadow: 2px 2px 8px #00ffff;
+            letter-spacing: 2px;
+            animation: fadeIn 1.5s ease-out;
         }}
 
         .stTextInput>div>div>input {{
             background-color: #1e1e2f;
             color: white;
             font-size: 18px;
+            border: 2px solid #4b0082;
+            border-radius: 10px;
+            box-shadow: 0 0 8px #00ffff;
+        }}
+
+        .stButton>button {{
+            background-color: #1f1f2e;
+            color: white;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 8px #00ffff;
+        }}
+
+        .stButton>button:hover {{
+            background-color: #4b0082;
+            border-color: cyan;
+            color: cyan;
+            box-shadow: 0 0 16px cyan;
         }}
 
         .feedback-box {{
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 8px;
+            text-shadow: 0 0 6px #ff00ff;
         }}
 
         .score {{
             font-size: 20px;
             font-weight: bold;
             color: #FFD700;
+            text-shadow: 0 0 6px #FFD700;
+        }}
+
+        @keyframes fadeIn {{
+            from {{ opacity: 0; transform: translateY(-10px); }}
+            to {{ opacity: 1; transform: translateY(0); }}
         }}
     </style>
 """, unsafe_allow_html=True)
