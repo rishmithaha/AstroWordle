@@ -30,11 +30,9 @@ def set_png_as_page_bg(png_file):
 
 set_png_as_page_bg('background.png')
 
-def get_base64_of_font_file(image_file):
+def get_base64_of_font_file():
     with open("dreamscape.ttf", "rb") as f:
         return base64.b64encode(f.read()).decode()
-    
-st.markdown(font_css, unsafe_allow_html=True)
 
 def set_custom_font(ttf_file):
     font_base64 = get_base64_of_font_file(ttf_file)
