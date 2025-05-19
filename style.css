@@ -33,3 +33,37 @@ html, body, * {
     background-position: center;
     z-index: -1;
 }
+.feedback-box {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 32px;
+    justify-content: center;
+}
+
+.feedback-box span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #1e1e1e;
+    border: 2px solid #ffffff20;
+}
+
+span[color='green'] {
+    background-color: #4caf50;
+    color: white;
+}
+
+span[color='yellow'] {
+    background-color: #ffeb3b;
+    color: black;
+}
+
+span[color='red'] {
+    background-color: #f44336;
+    color: white;
+}
