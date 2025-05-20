@@ -55,14 +55,26 @@ if not st.session_state.game_over:
             st.session_state.score_astro -= 100
 
             def get_feedback(guess, secret):
-                feedback = []
+                feedback = [("", "")] * 5
+                secret_used = [False] * 5
+
                 for i in range(5):
                     if guess[i] == secret[i]:
-                        feedback.append(("green", guess[i].upper()))
-                    elif guess[i] in secret:
-                        feedback.append(("yellow", guess[i].upper()))
-                    else:
-                        feedback.append(("white", guess[i].upper()))
+                        feedback[i] = ("green", guess[i].upper())
+                        secret_used[i] = True
+
+                for i in range(5):
+                    if feedback[i][0] == "":
+                        found = False
+                        for j in range(5):
+                            if guess[i] == secret[j] and not secret_used[j] and guess[j] != secret[j]:
+                                found = True
+                                secret_used[j] = True
+                                break
+                        if found:
+                            feedback[i] = ("yellow", guess[i].upper())
+                        else:
+                            feedback[i] = ("white", guess[i].upper())
                 return feedback
 
             feedback = get_feedback(guess, st.session_state.secret_word)
