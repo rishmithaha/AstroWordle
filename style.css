@@ -4,7 +4,7 @@
 /* Base font for all elements */
 html, body, * {
     font-family: 'Audiowide', cursive !important;
-    color: white !important;
+    color: blue !important;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -14,7 +14,7 @@ html, body, * {
 .astro-title {
     font-size: 60px;
     text-align: center;
-    color: #ffffff;
+    color: #1500ff;
     text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
     margin-bottom: 20px;
 }
